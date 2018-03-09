@@ -5,65 +5,73 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner entrada = new Scanner(System.in);
-		int flag = 1;
-		//colocar empregados padroes
-		DadosEmpregados empregadosNoSistema = new DadosEmpregados();
 		
+		Scanner input = new Scanner(System.in);
+		int option = 0;
+		
+		DadosEmpregados managerEmployee = new DadosEmpregados();
+		
+		
+		System.out.println("Payroll System");
 		do {
-			System.out.println("Sistema de Folha de Pagamento");
-			System.out.println("- Digite a opção desejada -");
-			System.out.println("[1] Cadastrar novo empregado");
-			System.out.println("[2] Atualizar dados de um empregado");
-			System.out.println("[3] Remover empregado");
-			System.out.println("[4] Lançar um Cartão de Ponto");
-			System.out.println("[5] Lançar um Resultado Venda");
-			System.out.println("[6] Lançar uma taxa de serviço");
-			System.out.println("[7] Rodar a folha de pagamento para hoje");
+			
+			System.out.println("- Enter the option that you want -");
+			System.out.println("[1] Register new employer");
+			System.out.println("[2] Edit employee informations");
+			System.out.println("[3] Remove employee");
+			System.out.println("[4] Throw a dot card");
+			System.out.println("[5] Throw a sales result");
+			System.out.println("[6] Throw a service fee");
+			System.out.println("[7] Payroll");
 			System.out.println("[8] Undo/redo");
-			System.out.println("[9] Agenda de Pagamento");
-			System.out.println("[9] Criação de Novas Agendas de Pagamento");
-			System.out.println("[0] Sair");
+			System.out.println("[9] Payment schedule");
+			System.out.println("[10] Create new payment schedule");
+			System.out.println("[0] Exit");
 			
-			int op = entrada.nextInt();
-			flag = op;
+			option = input.nextInt();
 			
-			switch(op) {
+			switch(option) {
 			case 1:
-				System.out.println("Cadastrando Novo Empregado");
-				System.out.print("Digite o nome do empregado: ");
-				String nome = entrada.next().toUpperCase();
-				System.out.print("Digite o endereço do empregado: ");
-				String endereco = entrada.next().toUpperCase();
-				Empregado novoEmpregado = new Empregado(nome, endereco);
-				novoEmpregado.colocarTipoEmpregado();
-				novoEmpregado.metodoDePagamento();
-				empregadosNoSistema.adicionarEmpregado(novoEmpregado);
-				System.out.print("Aperte 0 para voltar: ");
-				int volte = entrada.nextInt();
+				managerEmployee.newEmployer();
+				
 				break;
-					
 			case 2:
-				//digitar qual quer remover, pegar o index dele no empregadosNoSistema
+				managerEmployee.editEmployee();
 				break;
 			case 3:
-
+				managerEmployee.removeEmployee();
 				break;
 			case 4:
+				managerEmployee.addCardPoint();
 				break;
 			case 5:
-
+				managerEmployee.addSalesResult();
+				break;
+			case 6:
+				managerEmployee.serviceFee();
+				break;
+			case 7:
+				managerEmployee.payroll();
+				break;
+			case 8:
+				System.out.println("Function not available");
+				break;
+			case 9:
+				managerEmployee.paymentSchedule();
+				break;
+			case 10:
+				managerEmployee.newPaymentSchedule();
 				break;
 			default:
 				break;
 			}
-		} while(flag != 0);
+			
+		} while(option != 0);
 
 			
 
 		
-		entrada.close();
+		input.close();
 	}
 
 }
